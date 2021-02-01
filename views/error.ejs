@@ -1,0 +1,11 @@
+<% layout('layout/boilerplate') -%>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 alert alert-danger" role="alert">
+            <h4 class="alert-heading"><%= err.statusMessage %></h4>
+            <hr>
+            <p><%= err.stack %></p>
+        </div>
+    </div>
+</div>
