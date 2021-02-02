@@ -11,7 +11,11 @@ const CampgroundSchema = new Schema({
     reviews: [{
         type: Schema.Types.ObjectId,
         ref: 'Review'
-    }]
+    }],
+    user: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    }
 });
 
 // mongoose middleware to delete dependent reviews when deleting a campground
