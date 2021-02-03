@@ -21,6 +21,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({ extended: true }));
 app.use(methodOverride('_method'))
+app.use(express.static(path.join(__dirname, 'public')))
 
 // connect to mongoDB
 mongoose.connect('mongodb://localhost:27017/wild-camp', {

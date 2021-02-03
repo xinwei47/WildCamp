@@ -31,9 +31,23 @@
         <h4>Leave a review</h4>
         <form class="needs-validation mt-4" action="/campgrounds/<%= campground._id %>/reviews" method="POST"
             novalidate>
-            <label class="form-label" for="rating">Rating</label>
-            <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating" required>
-            <label for="body">Review</label>
+
+            <fieldset class="starability-basic">
+                <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked
+                    aria-label="No rating." checked />
+                <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                <label for="first-rate1" title="Terrible">1 star</label>
+                <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                <label for="first-rate2" title="Not good">2 stars</label>
+                <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                <label for="first-rate3" title="Average">3 stars</label>
+                <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                <label for="first-rate4" title="Very good">4 stars</label>
+                <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                <label for="first-rate5" title="Amazing">5 stars</label>
+            </fieldset>
+
+            <label class="form-label" for="body">Review</label>
             <textarea class="form-control" name="review[body]" id="body" cols="30" rows="5"
                 placeholder="Enter your review" required></textarea>
             <button class="btn btn-success mt-4">Submit</button>
@@ -49,7 +63,7 @@
         <% for (let review of campground.reviews) { %>
         <div class="card mt-4">
             <div class="card-body">
-                <h5 class="card-title">Rating: <%= review.rating %></h5>
+                <p class="card-title starability-result" data-rating="<%= review.rating %>"></p>
                 <p class="text-muted">by <%= review.author.username %></p>
                 <p class="text"><%= review.body %></p>
                 <!-- only show below to user who logged in and is the author of the review  -->

@@ -20,7 +20,10 @@
             </div>
             <div class="mb-3">
                 <label class="form-label" for="price">Price</label>
-                <input class="form-control" type="number" min="0" name="campground[price]" id="price" required>
+                <div class="input-group">
+                    <span class="input-group-text">$</span>
+                    <input class="form-control" type="number" min="0" name="campground[price]" id="price" required>
+                </div>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -28,6 +31,7 @@
                     Price must be greater than 0
                 </div>
             </div>
+
             <div class="mb-3">
                 <label class="form-label" for="image">Add Image</label>
                 <input class="form-control" type="text" name="campground[image]" id="image" required>
@@ -45,6 +49,5 @@
             </div>
             <button class="btn btn-primary">Add Campground</button>
         </form>
-        <a href="/campgrounds">All Campgrounds</a>
     </div>
 </div>
