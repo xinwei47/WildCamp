@@ -1,9 +1,9 @@
 <% layout('layout/boilerplate') -%>
-<!-- bootstrap validation is having some problems. Using browser default validation -->
 <div class="row justify-content-center">
     <div class="col-md-6 col-md-4">
         <h1 class="mb-3 text-center">Edit Campground</h1>
-        <form class="needs-validation" action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST" novalidate>
+        <form class="needs-validation mb-3" action="/campgrounds/<%= campground._id %>?_method=PUT" method="POST"
+            enctype="multipart/form-data" novalidate>
             <div class="mb-3">
                 <label class="form-label" for="title">Title</label>
                 <input class="form-control" type="text" name="campground[title]" id="title"
@@ -32,20 +32,34 @@
                 </div>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="image">Add Images</label>
-                <input class="form-control" type="text" name="campground[image]" id="image"
-                    value="<%= campground.image %>" required>
-                <div class="valid-feedback">
-                    Looks Good!
-                </div>
-            </div>
-            <div class="mb-3">
                 <label class="form-label" for="description">Description</label>
                 <textarea class="form-control" name="campground[description]" id="description" cols="30" rows="5"
                     required><%= campground.description %></textarea>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="image">Add Images</label>
+                <input class="form-control" type="file" name="image" id="image" multiple>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+            </div>
+            <div class="row row-cols-2 row-cols-md-3 g-3 mb-3">
+                <% for (let image of campground.images) { %>
+                <div class="d-flex flex-column">
+                    <img class="img-fluid" src="<%= image.path %>" alt="">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="<%= image._id %>" id="deleteImage"
+                            name="deleteImages[]">
+                        <label class="form-check-label" for="deleteImage">
+                            Deleted?
+                        </label>
+                    </div>
+                </div>
+                <% } %>
             </div>
             <button class="btn btn-secondary">Update Campground</button>
         </form>
